@@ -4,24 +4,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import server.obj.Account;
 
 @Path("/accountservice/")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class AccountService {
 
 	Map<String, Account> accounts = new HashMap<String, Account>();
 
 	public void init() {
-
+		
 		Account newAccount1 = new Account();
 		newAccount1.setId(1);
 		newAccount1.setName("Shanooj Rahim");
@@ -41,19 +42,21 @@ public class AccountService {
 
 	@POST
 	@Path("/accounts/{id}/")
+	@Produces({"application/json"})
 	public Account getAccount(@PathParam("id") String id) {
 		Account c = accounts.get(id);
 		return c;
 	}
 
-	@POST
+	@GET
 	@Path("/accounts/getall")
-	public List<Account> getAllAccounts(Account account) {
+	@Produces({"application/json"})
+	public Response getAllAccounts(){
 		List<Account> accountList = new ArrayList<Account>();
-		for (int i = 0; i <= accounts.size(); i++) {
-			accountList.add((Account) accounts.get(i));
+		for (int i = 1; i <= accounts.size(); i++) {			
+			accountList.add(accounts.get(String.valueOf(i)));
 		}
-		return accountList;
+		return Response.ok(accountList).build();
 	}
 
 }
