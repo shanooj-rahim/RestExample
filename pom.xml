@@ -65,7 +65,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>apache-cxf-sample</finalName>
+		<finalName>RestExample</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
