@@ -92,7 +92,8 @@ class DatabaseUtil{
     private static final String DB_SCHEMA = "movies_db";
     public static final String DB_USER = "root";
     public static final String DB_PASS = "password";
-
+	
+	//changes for checking stash
     public static String getDBConnectionString(){
         return DB_URL + DB_SCHEMA;
     }
